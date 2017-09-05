@@ -51,6 +51,8 @@ en:
         public_repo: ''
       roster:
         roster_entries: 'Your roster'
+      organization:
+        title: 'Display name'
     errors:
       models:
         grouping:
