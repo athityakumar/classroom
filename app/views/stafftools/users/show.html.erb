@@ -80,10 +80,10 @@
     </div>
   <% end %>
 
-  <% if @user.id != current_user.id %>
-    <div class="boxed-group dangerzone">
-      <h3>Dangerzone</h3>
+  <div class="boxed-group dangerzone">
+    <h3>Dangerzone</h3>
 
+    <% if @user.id != current_user.id %>
       <div class="boxed-group-inner">
         <h4>Impersonate <%= "@#{@user.github_user.login}" %></h4>
         <a data-remodal-target="impersonate-user" class="btn btn-danger boxed-action">Impersonate <%= "@#{@user.github_user.login}" %></a>
@@ -91,6 +91,12 @@
 
         <%= render partial: 'stafftools/users/impersonate_user_confirmation_modal', locals: { user: @user } %>
       </div>
+    <% end %>
+
+    <div class="boxed-group-inner">
+      <h4>Revoke OAuth token</h4>
+      <p>This revoke <strong><%= @user.github_user.login %></strong>'s token and force them to log back in.</p>
+
     </div>
-  <% end %>
+  </div>
 </div>

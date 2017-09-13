@@ -14,6 +14,7 @@ ActiveRecord::Schema.define(version: 20170802170240) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "pg_stat_statements"
 
   create_table "assignment_invitations", id: :serial, force: :cascade do |t|
     t.string "key", null: false

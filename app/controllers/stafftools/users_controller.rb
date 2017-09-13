@@ -20,6 +20,11 @@ module Stafftools
       redirect_to stafftools_root_path
     end
 
+    def revoke_token
+      @user.revoke_token
+      redirect_to stafftools_user_path(@user)
+    end
+
     private
 
     def set_user

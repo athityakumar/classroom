@@ -53,4 +53,18 @@ describe GitHubUser do
       expect(organization_memberships).to be_kind_of(Array)
     end
   end
+
+  describe "revoke_token", :vcr do
+    it "revokes the token for the user" do
+      user = create(:user)
+
+      use_vcr_placeholder_for(user.uid, "<FAKE_USER_GITHUB_ID>")
+      use_vcr_placeholder_for(user.token, "<FAKE_USER_ACCESS_TOKEN>")
+
+      user.github_user.revoke_token
+
+      url = github_url("/applications/#{application_github_client_id}/tokens/#{user.token}")
+      expect(WebMock).to have_requested(:delete, url)
+    end
+  end
 end

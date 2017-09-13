@@ -32,6 +32,12 @@ class GitHubUser < GitHubResource
     end
   end
 
+  def revoke_token
+    GitHub::Errors.with_error_handling do
+      GitHubClassroom.github_client.revoke_application_authorization(@client.access_token)
+    end
+  end
+
   private
 
   def github_attributes
